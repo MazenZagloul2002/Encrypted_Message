@@ -1,1 +1,79 @@
+#importing string module
+import string
+#alphebet lower case
+alphebet_lower = string.ascii_lowercase + string.ascii_lowercase
+#alphebet upper case
+alphebet_upper = string.ascii_uppercase + string.ascii_uppercase
 
+# Define function to ( encrypt ) Word or( Message ) 
+def ecrypt(user_message, shift_number):
+  encrypted_message = ""
+  for letter in user_message: 
+    if letter in alphebet_lower:
+      orginal_postion = alphebet_lower.index(letter) 
+      new_postion = orginal_postion + shift_number
+      encrypted_message += alphebet_lower [new_postion]
+    elif letter in alphebet_upper:      
+      orginal_postion = alphebet_upper.index(letter)
+      new_postion = orginal_postion + shift_number
+      encrypted_message += alphebet_upper[new_postion]
+    else:
+      encrypted_message += letter
+
+  print(f"""
+  ** Your Encrypted Message **
+  
+  {encrypted_message}
+  
+  *********
+  """) 
+  print("Thank you for using our program") 
+
+
+# Define function to decrypt ( Word ) or ( Message )
+def decrypt(user_message, shift_number):
+  decrypted_message = ""
+  for letter in user_message:
+    if letter in alphebet_lower:
+      orginal_postion = alphebet_lower.index(letter)
+      new_postion = orginal_postion - shift_number
+      decrypted_message += alphebet_lower [new_postion]
+    elif letter in alphebet_upper:      
+      orginal_postion = alphebet_upper.index(letter)
+      new_postion = orginal_postion - shift_number
+      decrypted_message += alphebet_upper[new_postion]
+    else:
+      decrypted_message += letter
+  print(f"""
+  **   Your original Message  **
+                    
+  {decrypted_message}
+
+  *********
+  """)
+  print("Thank you for using our program") 
+
+
+
+# Welcome to User
+print("Welcome")
+# user will choose to encrypt or decrypt
+choose = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+# if user choose to encrypt
+if choose == "encode":
+  user_message = input("Enter a message: ")
+  shift_number = int(input("Enter a shift number: "))
+  # call function to encrypt
+  ecrypt(user_message, shift_number) 
+  
+# if user choose to decrypt
+elif choose == "decode":
+  user_message = input("Enter a message: ")
+  shift_number = int(input("Enter a shift number: "))
+  # call funnction to decrypt
+  decrypt(user_message, shift_number)
+  
+# if user choose wrong option  
+else:
+  print("Invalid Input! please Try Again")     
+      
